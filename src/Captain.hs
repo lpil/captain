@@ -5,15 +5,24 @@ module Captain
   , app
   ) where
 
+import Network.Wai.Middleware.RequestLogger (logStdoutDev)
 import Web.Spock
 import Web.Spock.Config
+
+type AppM = SpockM () () () ()
 
 main :: IO ()
 main = do
   spockCfg <- defaultSpockCfg () PCNoDatabase ()
   runSpock 4000 (spock spockCfg app)
 
-app :: SpockM () () () ()
-app = do
+app :: AppM
+app = middlewares >> routes
+
+middlewares :: AppM
+middlewares = middleware logStdoutDev
+
+routes :: AppM
+routes = do
   get root $ text "Hello, Sailor!"
   get "about" $ text "About!"

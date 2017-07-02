@@ -30,6 +30,7 @@ library
   build-depends:
       Spock >=0.12
     , base >=4.7 && <5
+    , wai-extra >=3.0 && <4.0
   default-language: Haskell2010
 
 executable captain-server
@@ -40,6 +41,7 @@ executable captain-server
   build-depends:
       Spock >=0.12
     , base >=4.7 && <5
+    , wai-extra >=3.0 && <4.0
     , captain
     , Spock
   default-language: Haskell2010
@@ -52,6 +54,7 @@ test-suite captain-test
   build-depends:
       Spock >=0.12
     , base >=4.7 && <5
+    , wai-extra >=3.0 && <4.0
     , hspec
     , captain
   other-modules:
