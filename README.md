@@ -6,12 +6,7 @@ A little web thing!
 ## Quickstart
 
 ```sh
-# Test
-stack test --file-watch
-
-# Build
-stack build
-
-# Run web server
-stack exec captain-server
+make setup    # Install dev tools
+make test     # Run the test watcher
+make server   # Run the dev server
 ```
