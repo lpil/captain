@@ -15,7 +15,12 @@ main = hspecWith defaultConfig {configFastFail = True} spec
 
 spec :: Spec
 spec =
-  with (spockAsApp $ appWith testAppConfig) $
-  describe "GET /" $
-  it "serves the home page" $
-  get "/" `shouldRespondWith` 200 {matchBody = bodyContains "Hello, Sailor!"}
+  with (spockAsApp $ appWith testAppConfig) $ do
+    describe "GET /" $
+      it "serves the home page" $ do
+        let resp = get "/"
+        resp `shouldRespondWith` 200 {matchBody = bodyContains "Hello, Sailor!"}
+    describe "GET /styles.css" $
+      it "serves the stylesheet" $ do
+        let resp = get "/main.css"
+        resp `shouldRespondWith` 200

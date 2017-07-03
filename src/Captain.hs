@@ -10,6 +10,7 @@ module Captain
 
 import Network.Wai (Middleware)
 import Network.Wai.Middleware.RequestLogger (logStdoutDev)
+import Network.Wai.Middleware.Static (addBase, staticPolicy)
 import Web.Spock
 import Web.Spock.Config
 
@@ -42,8 +43,16 @@ appWith config = do
   spock spockCfg $ appStack config
 
 appStack :: AppConfig -> AppM
-appStack AppConfig {useLogger = True} = middleware logStdoutDev >> routes
-appStack _ = routes
+appStack AppConfig {useLogger = True} = do
+  middleware logStdoutDev
+  middlewares
+  routes
+appStack _ = do
+  middlewares
+  routes
+
+middlewares :: AppM
+middlewares = middleware $ staticPolicy $ addBase "public"
 
 routes :: AppM
 routes = do
