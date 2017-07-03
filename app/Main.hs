@@ -1,6 +1,6 @@
 module Main where
 
-import Captain
+import qualified Captain
 
 main :: IO ()
 main = Captain.main
