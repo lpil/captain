@@ -1,5 +1,6 @@
 help:
 	@cat $(MAKEFILE_LIST) | grep -E '^[a-zA-Z_-]+:.*?## .*$$' | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+.PHONY: help
 
 
 setup: ## Install dev tools
@@ -18,5 +19,5 @@ test: ## Run the test watcher
 
 
 test-once: ## Run the tests once
-	stack test --file-watch
+	stack test
 .PHONY: test-once
