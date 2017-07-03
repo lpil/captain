@@ -61,6 +61,7 @@ test-suite captain-test
     , hspec
     , captain
     , hspec-wai
+    , bytestring
   other-modules:
       GodSpec
       Support

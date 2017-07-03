@@ -42,3 +42,4 @@ tests:
       - hspec
       - captain
       - hspec-wai
+      - bytestring
